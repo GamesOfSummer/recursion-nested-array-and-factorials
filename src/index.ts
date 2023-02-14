@@ -1,31 +1,24 @@
-import { consoleBuffer, consoleEnd, consoleStart } from "./helpers";
+import { consoleBuffer, consoleEnd, consoleStart, formatOutput } from "./helpers";
 
 
 
-function crudeInsertionSort(array: number[]) {
+function nestedArrayViaRecursion(array: any[]) {
     
-    for(let i = 0; i < array.length; i++)
+    if(array.length < 0)
     {
-        for(let j = 0; j < array.length; j++)
-        {
-            if(array[i] < array[j])
-            {
-                const greaterValue = array[i];
-                const lesserValue = array[j];
-            
-                array[i] = lesserValue;
-                array[j] = greaterValue;
-            }
-        }   
+        return 0;
     }
 
-    return array;
 
+    const sum = array.pop();
+    return sum + nestedArrayViaRecursion(array);
+
+ 
 }
 
 
 
-function recursionInsertionSort(array: number[], index : number) {
+function factorialViaRecursion(array: number[], index : number) {
     
     if(index > array.length)
     {
@@ -46,18 +39,15 @@ function recursionInsertionSort(array: number[], index : number) {
             }
         }
 
-        return recursionInsertionSort(array, index + 1);
+        return factorialViaRecursion(array, index + 1);
     }
 }
 
 
 consoleStart();
 
-console.log(crudeInsertionSort([6,3,2,0,13]));
-console.log(crudeInsertionSort([36,110,42,2]));
-
-console.log(recursionInsertionSort([6,3,2,0,13], 0));
-console.log(recursionInsertionSort([36,110,42,2], 0));
+formatOutput(nestedArrayViaRecursion([1,2,3]), 6);
+formatOutput(nestedArrayViaRecursion([1,[2],3]), 6);
 
 consoleEnd();
 consoleBuffer();

@@ -1,20 +1,14 @@
 "use strict";
 exports.__esModule = true;
 var helpers_1 = require("./helpers");
-function crudeInsertionSort(array) {
-    for (var i = 0; i < array.length; i++) {
-        for (var j = 0; j < array.length; j++) {
-            if (array[i] < array[j]) {
-                var greaterValue = array[i];
-                var lesserValue = array[j];
-                array[i] = lesserValue;
-                array[j] = greaterValue;
-            }
-        }
+function nestedArrayViaRecursion(array) {
+    if (array.length < 0) {
+        return 0;
     }
-    return array;
+    var sum = array.pop();
+    return sum + nestedArrayViaRecursion(array);
 }
-function recursionInsertionSort(array, index) {
+function factorialViaRecursion(array, index) {
     if (index > array.length) {
         return array;
     }
@@ -27,13 +21,11 @@ function recursionInsertionSort(array, index) {
                 array[i - 1] = lesserValue;
             }
         }
-        return recursionInsertionSort(array, index + 1);
+        return factorialViaRecursion(array, index + 1);
     }
 }
 (0, helpers_1.consoleStart)();
-console.log(crudeInsertionSort([6, 3, 2, 0, 13]));
-console.log(crudeInsertionSort([36, 110, 42, 2]));
-console.log(recursionInsertionSort([6, 3, 2, 0, 13], 0));
-console.log(recursionInsertionSort([36, 110, 42, 2], 0));
+(0, helpers_1.formatOutput)(nestedArrayViaRecursion([1, 2, 3]), 6);
+(0, helpers_1.formatOutput)(nestedArrayViaRecursion([1, [2], 3]), 6);
 (0, helpers_1.consoleEnd)();
 (0, helpers_1.consoleBuffer)();
