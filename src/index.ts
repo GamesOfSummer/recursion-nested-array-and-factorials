@@ -20,21 +20,11 @@ function nestedArrayViaRecursion(array: any[]): number {
     return total;
 }
 
-function factorialViaRecursion(array: number[], index: number) {
-    if (index > array.length) {
-        return array;
+function factorialViaRecursion(index: number) {
+    if (index <= 1) {
+        return index;
     } else {
-        for (let i = index; i > 0; i--) {
-            if (array[i] < array[i - 1]) {
-                const lesserValue = array[i];
-                const greaterValue = array[i - 1];
-
-                array[i] = greaterValue;
-                array[i - 1] = lesserValue;
-            }
-        }
-
-        return factorialViaRecursion(array, index + 1);
+        return index * factorialViaRecursion(index - 1);
     }
 }
 
@@ -43,6 +33,9 @@ consoleStart();
 validateFxn(nestedArrayViaRecursion([1, 2, 3]), 6);
 validateFxn(nestedArrayViaRecursion([1, [2], 3]), 6);
 validateFxn(nestedArrayViaRecursion([[[[[[[6]]]]]]]), 6);
+
+validateFxn(factorialViaRecursion(1), 1);
+validateFxn(factorialViaRecursion(6), 720);
 
 consoleEnd();
 consoleBuffer();

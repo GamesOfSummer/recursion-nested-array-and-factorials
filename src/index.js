@@ -14,25 +14,19 @@ function nestedArrayViaRecursion(array) {
     }
     return total;
 }
-function factorialViaRecursion(array, index) {
-    if (index > array.length) {
-        return array;
+function factorialViaRecursion(index) {
+    if (index <= 1) {
+        return index;
     }
     else {
-        for (var i = index; i > 0; i--) {
-            if (array[i] < array[i - 1]) {
-                var lesserValue = array[i];
-                var greaterValue = array[i - 1];
-                array[i] = greaterValue;
-                array[i - 1] = lesserValue;
-            }
-        }
-        return factorialViaRecursion(array, index + 1);
+        return index * factorialViaRecursion(index - 1);
     }
 }
 (0, helpers_1.consoleStart)();
 (0, helpers_1.validateFxn)(nestedArrayViaRecursion([1, 2, 3]), 6);
 (0, helpers_1.validateFxn)(nestedArrayViaRecursion([1, [2], 3]), 6);
 (0, helpers_1.validateFxn)(nestedArrayViaRecursion([[[[[[[6]]]]]]]), 6);
+(0, helpers_1.validateFxn)(factorialViaRecursion(1), 1);
+(0, helpers_1.validateFxn)(factorialViaRecursion(6), 720);
 (0, helpers_1.consoleEnd)();
 (0, helpers_1.consoleBuffer)();
