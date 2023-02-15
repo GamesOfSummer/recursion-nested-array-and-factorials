@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-exports.validateFxn = exports.consoleBuffer = exports.consoleEnd = exports.consoleStart = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formatOutput = exports.consoleBuffer = exports.consoleEnd = exports.consoleStart = void 0;
 var consoleStart = function () {
     console.log('\x1b[33m', 'Running test cases...');
     console.log('');
@@ -18,15 +18,16 @@ var consoleBuffer = function () {
     console.log('\n');
 };
 exports.consoleBuffer = consoleBuffer;
-var validateFxn = function (fxn, answer) {
+var formatOutput = function (fxn, answer) {
     var output = fxn;
-    console.log('\x1b[36m%s\x1b[0m', '🛠 Testing function...');
+    console.log('\x1b[36m%s\x1b[0m', 'Testing function...');
     if (output === answer) {
-        console.log('\x1b[32m', '✅ CORRECT :: ' + output + ' === ' + answer);
+        console.log('\x1b[32m', 'CORRECT :: ' + output + ' === ' + answer);
     }
     else {
-        console.log('\x1b[31m', '⭕ WRONG :: Output was ' + output + ', expected ' + answer);
+        console.log('\x1b[31m', 'WRONG -> Output was ' + output + ', expected ' + answer);
     }
     console.log();
 };
-exports.validateFxn = validateFxn;
+exports.formatOutput = formatOutput;
+//# sourceMappingURL=helpers.js.map

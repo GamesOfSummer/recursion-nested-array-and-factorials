@@ -1,62 +1,38 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var consoleStart = function () {
-    console.log('\x1b[33m', 'Running test cases...');
-    console.log('');
-};
-var consoleEnd = function () {
-    console.log('\x1b[33m', 'End of test cases...');
-    console.log('\x1b[37m', '');
-    console.log('');
-};
-var consoleBuffer = function () {
-    console.log('--------------------------');
-    console.log('--------------------------');
-    console.log('\n');
-};
-var formatOutput = function (fxn, answer) {
-    var output = fxn;
-    console.log('\x1b[36m%s\x1b[0m', 'Testing function...');
-    if (output === answer) {
-        console.log('\x1b[32m', 'CORRECT :: ' + output + ' === ' + answer);
+var helpers_1 = require("./helpers");
+function nestedArrayViaRecursion(array) {
+    var total = 0;
+    for (var i = 0; i < array.length; i++) {
+        var currentValue = array[i];
+        if (typeof currentValue !== 'number') {
+            total += nestedArrayViaRecursion(array);
+        }
+        else {
+            total += currentValue;
+        }
     }
-    else {
-        console.log('\x1b[31m', 'WRONG -> Output was ' + output + ', expected ' + answer);
-    }
-    console.log();
-};
-function crudeSort(array, n) {
-    if (n === 0) {
-        return array[n];
-    }
-    else if (array[n] < crudeSort(array, n - 1)) {
-        return array[n];
-    }
-    else {
-        return crudeSort(array, n - 1);
-    }
+    return total;
 }
-function bubbleSort(array) {
-    if (array.length < 1) {
+function factorialViaRecursion(array, index) {
+    if (index > array.length) {
         return array;
     }
     else {
-        for (var i = 0; i < array.length; i++) {
-            if ((array[i] < array[i + 1])) {
+        for (var i = index; i > 0; i--) {
+            if (array[i] < array[i - 1]) {
                 var lesserValue = array[i];
-                var greaterValue = array[i + 1];
+                var greaterValue = array[i - 1];
                 array[i] = greaterValue;
-                array[i + 1] = lesserValue;
+                array[i - 1] = lesserValue;
             }
         }
-        array.pop();
-        return bubbleSort(array);
+        return factorialViaRecursion(array, index + 1);
     }
 }
-consoleStart();
-console.log(crudeSort([6, 3, 2, 0, 13], 3));
-console.log(crudeSort([36, 110, 42, 2], 1));
-console.log(bubbleSort([36, 110, 42, 2]));
-consoleEnd();
-consoleBuffer();
+(0, helpers_1.consoleStart)();
+// formatOutput(nestedArrayViaRecursion([1, 2, 3]), 6);
+(0, helpers_1.formatOutput)(nestedArrayViaRecursion([1, [2], 3]), 6);
+(0, helpers_1.consoleEnd)();
+(0, helpers_1.consoleBuffer)();
 //# sourceMappingURL=index.js.map

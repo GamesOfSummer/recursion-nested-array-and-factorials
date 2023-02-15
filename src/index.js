@@ -2,11 +2,17 @@
 exports.__esModule = true;
 var helpers_1 = require("./helpers");
 function nestedArrayViaRecursion(array) {
-    if (array.length < 0) {
-        return 0;
+    var total = 0;
+    for (var i = 0; i < array.length; i++) {
+        var currentValue = array[i];
+        if (typeof currentValue !== 'number') {
+            total += nestedArrayViaRecursion(currentValue);
+        }
+        else {
+            total += currentValue;
+        }
     }
-    var sum = array.pop();
-    return sum + nestedArrayViaRecursion(array);
+    return total;
 }
 function factorialViaRecursion(array, index) {
     if (index > array.length) {
@@ -14,7 +20,7 @@ function factorialViaRecursion(array, index) {
     }
     else {
         for (var i = index; i > 0; i--) {
-            if ((array[i] < array[i - 1])) {
+            if (array[i] < array[i - 1]) {
                 var lesserValue = array[i];
                 var greaterValue = array[i - 1];
                 array[i] = greaterValue;
@@ -25,7 +31,8 @@ function factorialViaRecursion(array, index) {
     }
 }
 (0, helpers_1.consoleStart)();
-(0, helpers_1.formatOutput)(nestedArrayViaRecursion([1, 2, 3]), 6);
-(0, helpers_1.formatOutput)(nestedArrayViaRecursion([1, [2], 3]), 6);
+(0, helpers_1.validateFxn)(nestedArrayViaRecursion([1, 2, 3]), 6);
+(0, helpers_1.validateFxn)(nestedArrayViaRecursion([1, [2], 3]), 6);
+(0, helpers_1.validateFxn)(nestedArrayViaRecursion([[[[[[[6]]]]]]]), 6);
 (0, helpers_1.consoleEnd)();
 (0, helpers_1.consoleBuffer)();

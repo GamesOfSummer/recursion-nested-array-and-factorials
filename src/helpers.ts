@@ -15,17 +15,17 @@ export const consoleBuffer = () => {
     console.log('\n');
 };
 
-export const formatOutput = (fxn: any, answer: any) => {
+export const validateFxn = (fxn: any, answer: any) => {
     const output = fxn;
 
-    console.log('\x1b[36m%s\x1b[0m', 'Testing function...');
+    console.log('\x1b[36m%s\x1b[0m', '🛠 Testing function...');
 
     if (output === answer) {
-        console.log('\x1b[32m', 'CORRECT :: ' + output + ' === ' + answer);
+        console.log('\x1b[32m', '✅ CORRECT :: ' + output + ' === ' + answer);
     } else {
         console.log(
             '\x1b[31m',
-            'WRONG -> Output was ' + output + ', expected ' + answer
+            '⭕ WRONG :: Output was ' + output + ', expected ' + answer
         );
     }
 
